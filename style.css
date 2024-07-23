@@ -1,0 +1,539 @@
+@import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+
+:root {
+      /* circular bar colors */
+      --soft-blue: hsl(233, 100%, 68%);
+      --soft-orange: hsl(25, 90%, 64%);
+      --soft-red: hsl(17, 88%, 63%);
+      --cyan: hsl(199, 97%, 62%);
+      --soft-green: hsl(147, 42%, 62%);
+      --soft-purple: hsl(250, 100%, 69%);
+      --soft-dark-purple: hsl(265, 32%, 44%);
+
+      /* text colors */
+      --text-red: hsl(0, 96%, 66%);
+      --text-green: hsl(144, 67%, 48%);
+      --text-purple: hsl(250, 100%, 69%);
+      --text-blue: hsl(233, 69%, 62%);
+      --text-dark-grey: hsl(0, 0%, 25%);
+      --text-grey: hsl(0, 0%, 37%);
+
+      /* card bg colors */
+      --transparent-purple: hsl(251, 100%, 97%);
+      --transparent-green: hsl(143, 62%, 95%);
+      --transparent-red: hsl(0, 100%, 97%);
+      --transpaent-blue: hsl(235, 68%, 96%);
+
+      /* font-weights */
+      --font-weight-normal: 500;
+      --font-weight-medium: 650;
+      --font-weight-bold: 900;
+}
+
+* {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+
+      font-family: 'Euclid Circular B', sans-serif;
+}
+
+body {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      min-width: 320px;
+      color: var(--text-grey);
+
+}
+
+main {
+      width: 100%;
+      padding: 1.5rem;
+
+}
+
+
+.question {
+      margin-bottom: 1.75rem;
+}
+
+.question p {
+      font-size: 1.3rem;
+      margin-bottom: 1.05rem;
+      color: var(--text-dark-grey);
+      font-weight: var(--font-weight-medium);
+}
+
+.question h1 {
+      color: var(--text-grey);
+      font-size: 0.9rem;
+      line-height: 1.95;
+      font-weight: 550;
+}
+
+
+
+.answer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      margin-bottom: 1.25rem;
+}
+
+.answer-header>p {
+      font-size: 1.2rem;
+      font-weight: var(--font-weight-medium);
+      color: var(--text-dark-grey);
+      text-wrap: nowrap;
+}
+
+.answer-header div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      row-gap: 0.25rem;
+      column-gap: 0.5rem;
+}
+
+.answer-header div p {
+      font-size: 0.8rem;
+      color: var(--text-blue);
+}
+
+
+.answer-statement {
+      border: 1px solid hsla(0, 0%, 37%, 0.166);
+      border-radius: 1rem;
+      padding: 1rem;
+      line-height: 2;
+      margin-bottom: 2rem;
+}
+
+
+
+
+
+
+.aside-header {
+      background-color: var(--soft-blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      font-weight: var(--font-weight-normal);
+}
+
+.aside-header h2 {
+      font-weight: var(--font-weight-normal);
+}
+
+.drop-down {
+      border: 2px solid white;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+}
+
+.drop-down svg {
+      fill: white;
+      width: 1rem;
+      height: 1rem;
+}
+
+
+.score-analysis {
+      padding: 1.5rem;
+
+}
+
+.score-analysis>p:first-child {
+      font-size: 1.15rem;
+      color: var(--text-dark-grey);
+      margin-bottom: 1rem;
+}
+
+
+/* circular progress bars :  */
+
+.progress-container {
+      position: relative;
+      width: 60px;
+      height: 60px;
+}
+
+.progress-container svg {
+      height: 60px;
+      width: 60px;
+}
+
+#progress-svg {
+      transform: rotate(-60deg);
+}
+
+circle {
+      fill: none;
+      stroke-width: 5px;
+}
+
+.background-circle {
+      stroke: rgb(250, 250, 250)
+            /* Background color for the circle */
+}
+
+.progress-circle {
+      stroke: var(--text-blue);
+      /* Plain color */
+      stroke-dasharray: 440;
+      /* Adjust this value to match the circumference */
+      stroke-dashoffset: 440;
+      /* Adjust this value to match the circumference */
+}
+
+.progress-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--text-blue);
+      font-size: 0.97rem;
+}
+
+
+
+
+
+
+
+
+.avg-score-card {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 2rem;
+
+      background-color: var(--transpaent-blue);
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+
+      margin-bottom: 2rem;
+}
+
+.avg-score-card-info {
+      color: var(--text-blue);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-around;
+      gap: 0.5rem;
+
+      p:last-child {
+            font-size: 0.4rem;
+      }
+
+      span {
+            font-weight: var(--font-weight-medium);
+            font-size: 1.1rem;
+      }
+
+}
+
+
+.progress-bar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-rows: auto;
+      row-gap: 2rem;
+      column-gap: 1rem;
+      margin-bottom: 2rem;
+
+}
+
+/* defining the unique colors of progress bars :  */
+.progress-bar-grid {
+      .progress-bar-card:nth-child(1) {
+            .progress-circle {
+                  stroke: var(--soft-red);
+            }
+
+            .progress-value {
+                  color: var(--soft-red);
+            }
+      }
+
+      .progress-bar-card:nth-child(2) {
+            .progress-circle {
+                  stroke: var(--cyan);
+            }
+
+            .progress-value {
+                  color: var(--cyan);
+            }
+      }
+
+      .progress-bar-card:nth-child(3) {
+            .progress-circle {
+                  stroke: var(--soft-green);
+            }
+
+            .progress-value {
+                  color: var(--soft-green);
+            }
+      }
+
+      .progress-bar-card:nth-child(4) {
+            .progress-circle {
+                  stroke: var(--soft-purple);
+            }
+
+            .progress-value {
+                  color: var(--soft-purple);
+            }
+      }
+
+      .progress-bar-card:nth-child(5) {
+            .progress-circle {
+                  stroke: var(--soft-orange);
+            }
+
+            .progress-value {
+                  color: var(--soft-orange);
+            }
+      }
+
+      .progress-bar-card:nth-child(6) {
+            .progress-circle {
+                  stroke: var(--soft-dark-purple);
+            }
+
+            .progress-value {
+                  color: var(--soft-dark-purple);
+            }
+      }
+}
+
+.progress-bar-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+}
+
+.progress-container {
+      margin-bottom: 1.25rem;
+      margin-left: 1rem;
+}
+
+.progress-circle__info {
+      text-wrap: nowrap;
+}
+
+
+
+.text-score {
+      border: 1px solid hsla(0, 0%, 37%, 0.166);
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      line-height: 2;
+      font-size: 0.9rem;
+}
+
+.detailed-analysis {
+      border: 1px solid hsla(0, 0%, 37%, 0.166);
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+}
+
+.detailed-analysis-card {
+
+      margin-bottom: 1.75rem;
+
+      .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+      }
+
+
+
+
+      .card-info div {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 0.55rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+      }
+
+      .card-info div:first-child p:first-child {
+            background-color: var(--text-green);
+            color: white;
+            border-radius: 0.35rem;
+            padding: 0.2rem 0.35rem;
+            font-size: 0.8rem;
+      }
+
+      .card-info div:last-child p:first-child {
+            background-color: var(--text-red);
+            color: white;
+            border-radius: 0.35rem;
+            padding: 0.2rem 0.35rem;
+            font-size: 0.8rem;
+      }
+
+
+}
+
+
+.detailed-analysis .detailed-analysis-card:nth-child(1) .card-header p:last-child {
+      background-color: hsl(26, 91%, 95%);
+      font-size: 0.8rem;
+      padding: 0.2rem;
+      color: var(--soft-orange);
+      border-radius: 0.2rem;
+}
+
+.detailed-analysis .detailed-analysis-card:nth-child(2) .card-header p:last-child {
+      background-color: hsl(199, 100%, 96%);
+      font-size: 0.8rem;
+      padding: 0.2rem;
+      color: var(--cyan);
+      border-radius: 0.2rem;
+}
+
+.detailed-analysis .detailed-analysis-card:nth-child(3) .card-header p:last-child {
+      background-color: hsl(148, 70%, 95%);
+      font-size: 0.8rem;
+      padding: 0.2rem;
+      color: var(--soft-green);
+      border-radius: 0.2rem;
+}
+
+#hide_extra_analysis {
+      background-color: white;
+      margin-left: auto;
+      display: block;
+      margin-right: auto;
+      color: var(--text-blue);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+}
+
+#hide_extra_analysis svg {
+      height: 1rem;
+      width: 1rem;
+      fill: var(--text-blue);
+}
+
+#hide_extra_analysis:hover {
+      cursor: pointer;
+      background-color: aliceblue;
+}
+
+.text-analysis {
+      padding: 1rem;
+}
+
+.text-analysis>p {
+      font-size: 1.2rem;
+      color: var(--text-dark-grey);
+      margin-bottom: 1rem;
+}
+
+.text-analysis .text-analysis-card {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+
+}
+
+.text-analysis .text-analysis-card div {
+      background-color: white;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      font-weight: var(--font-weight-medium);
+}
+
+.text-analysis .text-analysis-card:nth-child(2) {
+      background-color: var(--transparent-red);
+      color: var(--text-red);
+}
+
+.text-analysis .text-analysis-card:nth-child(3) {
+      background-color: var(--transparent-purple);
+      color: var(--text-purple);
+}
+
+.text-analysis .text-analysis-card:nth-child(4) {
+      background-color: var(--transparent-green);
+      color: var(--text-green);
+}
+
+
+.share_download{
+      padding: 1rem;
+      margin-bottom: 3rem;
+}
+
+.share_download > h3{
+      font-size: 1.2rem;
+      font-weight: var(--font-weight-normal);
+      margin-bottom: 1rem;
+}
+
+.share_download_cards{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+}
+
+.share_download_card{
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.5rem   ;
+      background-color: hsla(236, 70%, 96%, 0.505);
+      border-radius: 0.5rem;
+      color: var(--text-blue);
+      flex-grow: 1;
+      padding: 0.5rem;
+      font-size: 0.7rem;
+      padding-left: 1rem;
+}
+
+.share_download_card:hover{
+      cursor: pointer;
+}
+
+.share_download .icon svg{
+      width: 1rem;
+      height: 1rem;
+      fill: var(--text-blue);
+}
+
+
