@@ -43,7 +43,6 @@ hide_extra_anlaysis.addEventListener('click', () => {
 
 // making the corrections appear at there right place :
 let incorrect_spans = document.querySelectorAll(".answer-statement > p > span");
-console.log(incorrect_spans)
 
 let correction_element = null;
 
@@ -91,6 +90,11 @@ const spanClassToCorrectionId = {
       'purple-span1': 'correct-purple-span',
       'purple-span2': 'correct-purple-span',
 };
+
+Object.keys(spanClassToCorrectionId).forEach(spanClass => {
+      const extra_elements = document.getElementById(spanClassToCorrectionId[spanClass]);
+      extra_elements.style.display = "none";
+})
 
 Object.keys(spanClassToCorrectionId).forEach(spanClass => {
       const spans = document.querySelectorAll(`.${spanClass}`);

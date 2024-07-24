@@ -668,6 +668,24 @@ circle {
       fill: var(--text-blue);
 }
 
+#shareBtn{
+      position: relative;
+}
+
+#shareBtn > span{
+      position: absolute;
+      top: 100%;
+      background-color: var(--transpaent-blue);
+      color: var(--text-blue);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      margin-top: 0.25rem;
+      visibility: hidden;
+}
+
+#shareBtn:hover > span{
+      visibility: visible;
+}
 
 
 /* making it responsive  */
