@@ -29,5 +29,5 @@
 ## Coming Soon
 
 - **Share on Socials:** Integration for sharing content on social media platforms.
-
+- I have adjusted some features myself as the design file was a bit confusing.
 ---
