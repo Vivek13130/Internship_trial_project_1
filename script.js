@@ -62,6 +62,12 @@ Object.keys(spanClassToCorrectionId).forEach(spanClass => {
       correctionElement.style.display = "none";
 });
 
+// Hide all correction elements initially
+Object.keys(spanClassToCorrectionId).forEach(spanClass => {
+      const correctionElement = document.getElementById(spanClassToCorrectionId[spanClass]);
+      correctionElement.style.display = "none";
+});
+
 // Add event listeners for each span and its corresponding correction element
 Object.keys(spanClassToCorrectionId).forEach(spanClass => {
       const spans = document.querySelectorAll(`.${spanClass}`);
@@ -94,21 +100,31 @@ Object.keys(spanClassToCorrectionId).forEach(spanClass => {
                   correctionElement.style.display = 'none';
             });
 
+            // Handle delete button click
             const deleteButton = correctionElement.querySelector('.delete-btn');
             deleteButton.addEventListener('click', function () {
                   span.removeEventListener('mouseenter', mouseEnterHandler);
                   span.removeEventListener('mouseleave', mouseLeaveHandler);
                   correctionElement.style.display = 'none';
 
-                  // // Change the delete button appearance to indicate the tooltip is disabled
                   // deleteButton.innerText = "DONE";
                   // deleteButton.style.fontWeight = "600";
                   // deleteButton.style.color = "#07c400";
-                  // deleteButton.style.letter = "1px"
+                  // deleteButton.style.letterSpacing = "1px";
                   // deleteButton.style.backgroundColor = "#ebffeb";
+            });
+
+            // Handle correction text click to update span text
+            correctionElement.addEventListener('click', function (event) {
+                  // Check if the clicked element is a <p> tag with the class 'correct-text'
+                  if (event.target.tagName === 'P' && event.target.classList.contains('correct-text')) {
+                        span.innerText = event.target.innerText;
+                        correctionElement.style.display = 'none';
+                  }
             });
       });
 });
+
 
 
 

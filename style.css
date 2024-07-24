@@ -135,6 +135,10 @@ main {
       margin-bottom: 0.5rem;
 }
 
+.correct-text:hover{
+      cursor: pointer;
+}
+
 .correctness div:first-child {
       background-color: rgb(250, 251, 255);
       border-radius: 0.5rem;
