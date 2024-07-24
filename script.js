@@ -7,8 +7,6 @@ drop_down.addEventListener('click', () => {
       let text_analysis = document.querySelector(".text-analysis");
       let drop_down_icon = document.querySelector(".drop-down img");
 
-      console.log("hello");
-
       if (score_analysis.style.display !== "none") {
             score_analysis.style.display = "none";
             text_analysis.style.display = "none";
@@ -44,26 +42,112 @@ hide_extra_anlaysis.addEventListener('click', () => {
 
 
 // making the corrections appear at there right place :
+let incorrect_spans = document.querySelectorAll(".answer-statement > p > span");
+console.log(incorrect_spans)
+
+let correction_element = null;
+
+let correct_red_span = document.querySelector(".correct-red-span");
+let correct_yellow_span = document.querySelector(".correct-yellow-span");
+let correct_purple_span = document.querySelector(".correct-purple-span");
 
 
+// incorrect_spans.forEach((span) => {
 
 
+//       span.addEventListener('mouseenter', function (event) {
+//             const rect = span.getBoundingClientRect();
+//             correction_element.style.left = `${rect.left}px`;
+//             correction_element.style.top = `${rect.bottom + window.scrollY}px`;
+//             correction_element.style.display = 'block';
+//       });
+
+//       span.addEventListener('mouseleave', function () {
+
+//             setTimeout(() => {
+//                   if (!correction_element.matches(':hover')) {
+//                         correction_element.style.display = 'none';
+//                   }
+//             }, 1);
+
+//       });
+
+//       correction_element.addEventListener('mouseenter', function () {
+//             correction_element.style.display = 'block';
+//       });
+
+//       correction_element.addEventListener('mouseleave', function () {
+//             correction_element.style.display = 'none';
+//       });
+// });
 
 
+const spanClassToCorrectionId = {
+      'red-span1': 'correct-red-span',
+      'red-span2': 'correct-red-span',
+      'red-span3': 'correct-red-span',
+      'yellow-span1': 'correct-yellow-span',
+      'yellow-span2': 'correct-yellow-span',
+      'purple-span1': 'correct-purple-span',
+      'purple-span2': 'correct-purple-span',
+};
 
+Object.keys(spanClassToCorrectionId).forEach(spanClass => {
+      const spans = document.querySelectorAll(`.${spanClass}`);
+      const correctionElement = document.getElementById(spanClassToCorrectionId[spanClass]);
+
+      spans.forEach(span => {
+            const mouseEnterHandler = function () {
+                  const rect = span.getBoundingClientRect();
+                  correctionElement.style.left = `${rect.left}px`;
+                  correctionElement.style.top = `${rect.bottom + window.scrollY}px`;
+                  correctionElement.style.display = 'block';
+            };
+
+            const mouseLeaveHandler = function () {
+                  setTimeout(() => {
+                        if (!correctionElement.matches(':hover')) {
+                              correctionElement.style.display = 'none';
+                        }
+                  }, 1);
+            };
+
+            span.addEventListener('mouseenter', mouseEnterHandler);
+            span.addEventListener('mouseleave', mouseLeaveHandler);
+
+            correctionElement.addEventListener('mouseenter', function () {
+                  correctionElement.style.display = 'block';
+            });
+
+            correctionElement.addEventListener('mouseleave', function () {
+                  correctionElement.style.display = 'none';
+            });
+
+            const deleteButton = correctionElement.querySelector('.delete-btn');
+            deleteButton.addEventListener('click', function () {
+                  span.removeEventListener('mouseenter', mouseEnterHandler);
+                  span.removeEventListener('mouseleave', mouseLeaveHandler);
+                  // correctionElement.style.display = 'none';
+
+                  deleteButton.innerText = "DONE"
+                  deleteButton.style.fontWeight = "600";
+                  deleteButton.style.color = "#07c400"
+                  deleteButton.style.letterSpacing = "1px"
+                  deleteButton.style.backgroundColor = "#ebffeb";
+            });
+      });
+});
 
 
 
 // handling the circular progress bars : 
 
 let circle_containers = document.querySelectorAll('.progress-container');
-console.log(circle_containers);
 let max_progress = 10;
 
 
 circle_containers.forEach((circle_container) => {
       let circle = circle_container.querySelector(".progress-circle")
-      console.log(circle);
       let progress_value = Number(circle_container.querySelector(".progress-value").innerText);
 
       const radius = circle.r.baseVal.value;
