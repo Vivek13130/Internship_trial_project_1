@@ -21,7 +21,6 @@ drop_down.addEventListener('click', () => {
 });
 
 
-
 // hiding the extra analysis part :
 let hide_extra_anlaysis = document.getElementById("hide_extra_analysis");
 hide_extra_anlaysis.addEventListener('click', () => {
@@ -46,56 +45,24 @@ let incorrect_spans = document.querySelectorAll(".answer-statement > p > span");
 
 let correction_element = null;
 
-let correct_red_span = document.querySelector(".correct-red-span");
-let correct_yellow_span = document.querySelector(".correct-yellow-span");
-let correct_purple_span = document.querySelector(".correct-purple-span");
-
-
-// incorrect_spans.forEach((span) => {
-
-
-//       span.addEventListener('mouseenter', function (event) {
-//             const rect = span.getBoundingClientRect();
-//             correction_element.style.left = `${rect.left}px`;
-//             correction_element.style.top = `${rect.bottom + window.scrollY}px`;
-//             correction_element.style.display = 'block';
-//       });
-
-//       span.addEventListener('mouseleave', function () {
-
-//             setTimeout(() => {
-//                   if (!correction_element.matches(':hover')) {
-//                         correction_element.style.display = 'none';
-//                   }
-//             }, 1);
-
-//       });
-
-//       correction_element.addEventListener('mouseenter', function () {
-//             correction_element.style.display = 'block';
-//       });
-
-//       correction_element.addEventListener('mouseleave', function () {
-//             correction_element.style.display = 'none';
-//       });
-// });
-
 
 const spanClassToCorrectionId = {
-      'red-span1': 'correct-red-span',
-      'red-span2': 'correct-red-span',
-      'red-span3': 'correct-red-span',
-      'yellow-span1': 'correct-yellow-span',
-      'yellow-span2': 'correct-yellow-span',
-      'purple-span1': 'correct-purple-span',
-      'purple-span2': 'correct-purple-span',
+      'red-span1': 'correct-red-span1',
+      'red-span2': 'correct-red-span2',
+      'red-span3': 'correct-red-span3',
+      'yellow-span1': 'correct-yellow-span1',
+      'yellow-span2': 'correct-yellow-span2',
+      'purple-span1': 'correct-purple-span1',
+      'purple-span2': 'correct-purple-span2',
 };
 
+// Hide all correction elements initially
 Object.keys(spanClassToCorrectionId).forEach(spanClass => {
-      const extra_elements = document.getElementById(spanClassToCorrectionId[spanClass]);
-      extra_elements.style.display = "none";
-})
+      const correctionElement = document.getElementById(spanClassToCorrectionId[spanClass]);
+      correctionElement.style.display = "none";
+});
 
+// Add event listeners for each span and its corresponding correction element
 Object.keys(spanClassToCorrectionId).forEach(spanClass => {
       const spans = document.querySelectorAll(`.${spanClass}`);
       const correctionElement = document.getElementById(spanClassToCorrectionId[spanClass]);
@@ -131,13 +98,14 @@ Object.keys(spanClassToCorrectionId).forEach(spanClass => {
             deleteButton.addEventListener('click', function () {
                   span.removeEventListener('mouseenter', mouseEnterHandler);
                   span.removeEventListener('mouseleave', mouseLeaveHandler);
-                  // correctionElement.style.display = 'none';
+                  correctionElement.style.display = 'none';
 
-                  deleteButton.innerText = "DONE"
-                  deleteButton.style.fontWeight = "600";
-                  deleteButton.style.color = "#07c400"
-                  deleteButton.style.letterSpacing = "1px"
-                  deleteButton.style.backgroundColor = "#ebffeb";
+                  // // Change the delete button appearance to indicate the tooltip is disabled
+                  // deleteButton.innerText = "DONE";
+                  // deleteButton.style.fontWeight = "600";
+                  // deleteButton.style.color = "#07c400";
+                  // deleteButton.style.letter = "1px"
+                  // deleteButton.style.backgroundColor = "#ebffeb";
             });
       });
 });
